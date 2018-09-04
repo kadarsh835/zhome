@@ -1860,3 +1860,22 @@ footer .back-to-top a i {
 		padding: 1.2rem 2.3rem 1.5rem;
 	}
 }
+
+
+.logo{
+	font-family: 'Press Start 2P', cursive !important;
+    font-size: 3em;
+    color: #fff;
+}
+
+@media screen and (max-width:400px) {
+	.social-links{
+		margin-top: -10%;
+		text-align: right;
+	}
+	.logo{
+		text-align: left;
+		margin-top: 16%;
+		font-size: 30px;
+	}
+}
