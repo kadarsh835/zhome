@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <style>
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+.retro-button{width: 100%;height: 70px;background-image: url(./images/button.png);padding: 13px 30px;background-size: contain;font-size: 1em;background-repeat: no-repeat;margin-bottom: 12px;font-family: 'Press Start 2P'}
+.retro-button:hover{background-image:url(./images/button_hover.png)}
+.retro-button:active{background-image:url(./images/button_pressed.png)}
+
+
+
+
+section {
+	margin: 0 auto;
+	width: inherit;
+}
+
+.content {
+  background: #777;
+  color: white;
+  text-align: center;
+  padding: 5em;
+}
+
+.cassette {
+	width: 350px;
+	background-color: #333;
+	height: 220px;
+	display: inline-block;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.inner_1 {
+		display: inline-block;
+		height: 140px;
+		width: 315px;
+		background-color: gold;
+		margin: 20px 0;
+		border-radius: 5px;
+}
+
+.inner_2 {
+		display: inline-block;
+		height: 55px;
+		width: 215px;
+		margin-top: 45px;
+		background-color: #ABABAB;
+		border-radius: 100px;
+}
+
+.left_w {
+		position: relative;
+		right: 52px;
+		top: 1px;
+	}
+
+.right_w {
+		position: relative;
+		right: -52px;
+		top: 1px;
+}
+
+i {
+  	font-size: 3.5em;
+ }
+
+.fa-cog:before {
+		display: block;
+		width: 53px;
+		height: 53px;
+		background-color: black;
+		border-radius: 53px;
+}
+
+#trapezoid {
+	border-bottom: 40px solid #4b4b4b;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	height: 0;
+	width: 200px;
+  position: relative;
+  left: 65px;
+}
+
+#trapezoid > div:nth-child(1) {
+	width: 13px;
+  height: 13px;
+  display: block;
+  background-color: #e6e6e6;
+  -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+  position: absolute;
+  top: 21px;
+  left: 10px;
+}
+
+#trapezoid > div:nth-child(2) {
+	width: 13px;
+  height: 13px;
+  display: block;
+  background-color: #e6e6e6;
+  -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+  position: absolute;
+  top: 21px;
+  left: 176px;
+}
+
+#trapezoid > div:nth-child(3) {
+	width: 10px;
+  height: 10px;
+  display: block;
+  background-color: #e6e6e6;
+  -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  left: 150px;
+}
+
+#trapezoid > div:nth-child(4) {
+	width: 10px;
+  height: 10px;
+  display: block;
+  background-color: #e6e6e6;
+  -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  left: 36px;
+}
+
+audio {
+  visibility: hidden;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align:center;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+
+}
+
+.sidenav a:hover{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+.video-play-button {
+     /* position: absolute; */
+    z-index: 10;
+    /* top: 50%; */
+    /* left: 50%; */
+    transform: translateX(-50%) translateY(-50%);
+    box-sizing: content-box;
+    display: block;
+    width: 32px;
+    height: 44px;
+    /* margin-top: 50px; */
+    margin: 0 auto;
+    /* margin-bottom: -20px; */
+    /* background: #fa183d; */
+    border-radius: 50%;
+    padding: 18px 20px 18px 28px;
+}
+
+.video-play-button:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: #ba1f24;
+  border-radius: 50%;
+  animation: pulse-border 1500ms ease-out infinite;
+}
+
+.video-play-button:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: #fa183d;
+  border-radius: 50%;
+  transition: all 200ms;
+}
+
+.video-play-button:hover:after {
+  background-color: darken(#fa183d, 10%);
+}
+
+.video-play-button img {
+  position: relative;
+  z-index: 3;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.video-play-button span {
+  display: block;
+  position: relative;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  border-left: 32px solid #fff;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+
+.video-overlay {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.80);
+  opacity: 0;
+  transition: all ease 500ms;
+}
+
+.video-overlay.open {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
+}
+
+.video-overlay-close {
+  position: absolute;
+  z-index: 1000;
+  top: 15px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.video-overlay-close:hover {
+  color: #fa183d;
+}
+
+.video-overlay iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  /* width: 90%; */
+  /* height: auto; */
+  box-shadow: 0 0 15px rgba(0,0,0,0.75);
+}
+
+
+.footer-distributed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 45px 50px;
+}
+
+.footer-distributed .footer-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+/* Footer links */
+
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease .25s;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease .25s;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "·";
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+.footer-distributed .footer-right {
+  float: right;
+  margin-top: 6px;
+  max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition:all .25s;
+}
+
+.footer-distributed .footer-right a:hover{transform:scale(1.1); -webkit-transform:scale(1.1);}
+
+.footer-distributed p.footer-links a:hover{text-decoration:underline;}
+
+/* Media Queries */
+
+@media (max-width: 600px) {
+  .footer-distributed .footer-left, .footer-distributed .footer-right {
+    text-align: center;
+  }
+  .footer-distributed .footer-right {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  .footer-distributed .footer-left p.footer-links {
+    line-height: 1.8;
+  }
+}
+
+  </style>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Z'18 - Cultural Fest IIT ROPAR</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/main.css">
+   <link rel="stylesheet" href="css/vendor.css">
+   <!--Scroll-->
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+   <!-- script
+   ================================================== -->
+	<script src="js/modernizr.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+
+<body id="top">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<iframe src="game.html" style="height:97%;width:90%;border:none;"></iframe>
+</div>
+<div id="fullpage" >
+<div class="section" data-anchor="sec1" id="section0">
+	<!-- header
+   ================================================== -->
+   <header>
+
+   	<div class="row">
+   		<div class="logo">
+        <div style="
+ font-family: 'Press Start 2P', cursive !important;
+ font-size: 3em;
+ color: #fff;
+"><span class='Imag2' style="">></span>Zeitgeist</div>
+	      </div>
+
+			<div class="social-links">
+			   <ul>
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				   <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+				   <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+				   <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+				</ul>
+			</div>
+   	</div>
+
+   </header> <!-- /header -->
+
+   <!-- home
+   ================================================== -->
+   <section id="home" class="home-particles">
+
+   	<div class="shadow-overlay"></div>
+
+   	<div class="content-wrap-table">
+
+		   <div class="main-content-tablecell">
+
+		   	<div class="row">
+		   		<div class="col-twelve">
+
+
+
+            			<section style="margin-right: auto;padding-top:8%;margin-left: auto;padding-left: 15px;padding-right: 15px;text-align:center;">
+            				<span class="cassette" style="margin-top:25px;">
+            					<span class="inner_1">
+            						<span class="inner_2">
+            							<i class="fa fa-cog fa-spin left_w"></i>
+            							<i class="fa fa-cog fa-spin right_w"></i>
+            						</span>
+            					</span>
+                      <div id="trapezoid">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+            				</span>
+            			</section>
+
+
+<!--
+		   			<div id="counter">
+		   				<div class="half">
+		   					<span>334 <sup>days</sup></span>
+		 						<span>23 <sup>hours</sup></span>
+		   				</div>
+							<div class="half">
+								<span>50 <sup>mins</sup></span>
+		 						<span>33 <sup>secs</sup></span>
+		 					</div>
+		   			</div>
+-->
+			  			<div class="bottom-text">
+
+                  <div class="col-six">
+<a href="#"><div class="retro-button">Events</div></a>
+<a href="#"><div class="retro-button">Register</div></a>
+<a href="#"><div class="retro-button">About Us</div></a>
+
+                </div>
+                  <div class="col-six" style="text-align:right;">
+
+
+                    <a href="#"><h3 style="font-family: 'Press Start 2P', cursive !important;color:#fff;"> <span style="display:none;" class="c_wrap"><span class="Imag2" >> </span></span> Sponsors</h3></a>
+                    <a href="#"><h3 style="font-family: 'Press Start 2P', cursive !important;color:#fff;"> <span style="display:none;" class="c_wrap"><span class="Imag2" >> </span></span> College Representative</h3></a>
+                    <a href="#"><h3 style="font-family: 'Press Start 2P', cursive !important;color:#fff;"> <span style="display:none;" class="c_wrap"><span class="Imag2" >> </span></span> Find US</h3></a>
+                    <a href="#"><h3 style="font-family: 'Press Start 2P', cursive !important;color:#fff;"> <span style="display:none;" class="c_wrap"><span class="Imag2" >> </span></span> Initiatives</h3></a>
+                    <a href="#"><h3 style="font-family: 'Press Start 2P', cursive !important;color:#fff;"> <span style="display:none;" class="c_wrap"><span class="Imag2" >> </span></span> Pronites</h3></a>
+
+
+                  </div>
+
+
+
+			  			</div>
+
+			   	</div> <!-- /twelve -->
+
+			   	<div class="scroll-icon">
+
+					   <p class="scroll-text">Scroll For More Info</p>
+					   <a href="#sec2" class="smoothscroll">
+					   	<div class="mouse"></div>
+					   </a>
+				   	<div class="end-top"></div>
+
+					</div> <!-- /scroll-icon -->
+		   	</div> <!-- /row -->
+
+		   </div> <!-- /main-content -->
+
+		</div> <!-- /content-wrap -->
+
+   </section> <!-- /home -->
+</div>
+<div class="section" data-anchor="sec2"  id="section1">
+   <!-- info
+   ================================================== -->
+   <section id="info">
+
+   	<div class="info-overlay"></div>
+
+   	<div class="row">
+   		<div class="col-twelve tabs-wrap">
+</br>
+   			 <!-- /tabs -->
+<a id="play-video" class="video-play-button" href="#" onclick="openNav()">
+  <span></span>
+</a>				<div class="tab-container">
+
+					<!-- tab content - about
+   				================================================== -->
+					<div id="tab-about" class="tab-content">
+
+					   <div class="tab-entry">
+
+					   	<div class="row tab-entry-intro">
+					   		<div class="col-twelve with-bottom-line">
+
+					   			<h1>About Us</h1>
+
+					   			<p class="lead" style="    box-shadow: none !important;">Zeitgeist is one of the biggest annual college's cultural festival of North India: A fiesta where art, talent, and diversity
+                                    meets. It has a total footfall of more than 12k &amp; a reach of more than 250
+                                    colleges.
+
+                                    Encapsulating the spirit of times, Zeitgeist provides an opportunity
+                                    to the people from all over India to showcase their talent.
+                                    It provides a platform to the young talents of our nation to stir the atmosphere, rock the audience and set the stage on fire.
+
+                                    Zeitgeist has hosted many talented and celebrated personalities like Mohit
+                                    Chauhan, Alfaz, Zephyrtone and so on.
+
+                                    Filled with  the exhilaration of heated competition and exuberant events, Zeitgeist'18 is here to rock your heart.</p>
+
+					   		</div>
+					   	</div> <!-- /tab-content-intro -->
+
+
+					   </div> <!-- /tab-entry -->
+
+					</div> <!-- /tab-about -->
+
+
+
+				</div> <!-- /tab-container -->
+
+   		</div> <!-- twelve -->
+   	</div> <!-- row -->
+
+   </section> <!-- /info -->
+
+   </div><!--
+<div class="section" data-anchor="sec3"  id="section2">
+
+  <section id="cta">
+
+   	<div class="row cta-wrap">
+
+   		<div class="col-twelve cta-content">
+
+	     		<h2 class="h01"><a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT">Space for sponsors</a></h2>
+
+
+				<div class="action">
+			      <a class="button large" href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT">Sign Up Now</a>
+		      </div>
+
+   		</div>
+
+   	</div> 
+
+   </section>
+</div> -->
+<div class="section" data-anchor="sec4"  id="section3">
+   <!-- footer
+   ================================================== -->
+   <footer>
+
+<footer class="footer-distributed" style="margin-top: -75px;">
+
+      <div class="footer-right">
+
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+
+      </div>
+
+      <div class="footer-left">
+
+        <p class="footer-links">
+          <a class="link-1" href="#">Home</a>
+
+          <a href="#">Sponsors</a>
+
+          <a href="#">Events</a>
+
+          <a href="#">About</a>
+
+          <a href="#">Contact Us</a>
+
+          <a href="#"></a>
+        </p>
+
+        <p>Zeitgeits &copy; 2018</p>
+      </div>
+
+
+
+    </footer>
+
+</br>
+
+   	<div class="footer-bottom">
+
+			
+					<iframe width="500px" height="300px" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=iit%20ropar+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+			
+
+   		<div class="copyright">
+		     	<span>© Copyright Zeitgeist 2018.</span>
+		   </div>
+
+   	</div> <!-- /footer-bottom -->
+
+
+
+   	<div class="back-to-top">
+		 	<a href="#sec1" class="smoothscroll"><span>Back to Top</span></a>
+		</div>
+
+   </footer>
+</div>
+   </div>
+   <div id="preloader">
+    	<div id="loader"></div>
+   </div>
+
+   <!-- Java Script
+   ================================================== -->
+
+<script type="text/javascript">
+            $(document).ready(function(){
+                $("#fullpage").fullpage({
+				anchors: ['sec1', 'sec2', 'sec4'],
+                    keyboardScrolling: true,
+                    option: true,
+                    scrollingSpeed: 700,
+                    scrollBar: false,
+                    // navigation: true,
+                    slidesNavigation: true,
+					scrollOverflow: true,
+					scrollOverflowReset: true,
+					scrollOverflowResetKey: 'YWx2YXJvdHJpZ28uY29tXzlRaGMyTnliMnhzVDNabGNtWnNiM2RTWlhObGRBPT14Ykk=',
+                
+                });
+                $.fn.fullpage.setAllowScrolling(true);
+            });   
+        </script>
+
+   <script>
+   // Set the date we're counting down to
+   var countDownDate = new Date("Jan 5, 2019 15:37:25").getTime();
+
+   // Update the count down every 1 second
+   var countdownfunction = setInterval(function() {
+
+       // Get todays date and time
+       var now = new Date().getTime();
+
+       // Find the distance between now an the count down date
+       var distance = countDownDate - now;
+
+       // Time calculations for days, hours, minutes and seconds
+       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+       // Output the result in an element with id="demo"
+       document.getElementById("counter").innerHTML = "<div class='half'><span>"+days + " <sup>days</sup></span>" + "<span>"+ hours + " <sup>hours</sup></span></div>" + "<div class='half'><span>"+minutes + " <sup>minutes</sup></span>" + "<span>"+ seconds + " <sup>seconds</sup></span></div>"
+334
+       // If the count down is over, write some text
+       if (distance < 0) {
+           clearInterval(countdownfunction);
+           document.getElementById("demo").innerHTML = "EXPIRED";
+       }
+   }, 1000);
+
+   fadeloop('.Imag1',1500,1200,true);
+fadeloop('.Imag2',100,200,true);
+fadeloop('.Imag3',3000,7000,true);
+
+function fadeloop(el,timeout,timein,loop){
+    var $el = $(el),intId,fn = function(){
+         $el.fadeOut(timeout).fadeIn(timein);
+    };
+    fn();
+    if(loop){
+        intId = setInterval(fn,timeout+timein+100);
+        return intId;
+    }
+    return false;
+}
+
+
+$(".bottom-text a h3").hover(
+  function () {
+    /*fadeloop(this,100,200,false);*/
+    $(this).find('.c_wrap').css({"display":"inline-block",})
+
+  },
+  function () {
+$(this).find('.c_wrap').css({"display":"none",})
+  }
+);
+
+
+$('#play-video').on('click', function(e){
+  e.preventDefault();
+  $('#video-overlay').addClass('open');
+  $("#video-overlay").append('<iframe width="560" height="315" src="https://www.youtube.com/embed/ngElkyQ6Rhs" frameborder="0" allowfullscreen></iframe>');
+});
+
+$('.video-overlay, .video-overlay-close').on('click', function(e){
+  e.preventDefault();
+  close_video();
+});
+
+$(document).keyup(function(e){
+  if(e.keyCode === 27) { close_video(); }
+});
+
+function close_video() {
+  $('.video-overlay.open').removeClass('open').find('iframe').remove();
+};
+
+   </script>
+
+
+   <script src="js/jquery-2.1.3.min.js"></script>
+   <script src="js/plugins.js"></script>
+   <script src="js/main.js"></script>
+   
+   <script type="text/javascript" src="js/scrolloverflow.js"></script>
+
+<script type="text/javascript" src="js/fullpage.extensions.min.js"></script>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+</body>
+
+</html>
