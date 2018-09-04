@@ -1870,12 +1870,12 @@ footer .back-to-top a i {
 
 @media screen and (max-width:400px) {
 	.social-links{
-		margin-top: -10%;
+		margin-top: -5%;
 		text-align: right;
 	}
 	.logo{
 		text-align: left;
-		margin-top: 16%;
+		margin-top: 19%;
 		font-size: 30px;
 	}
 }
