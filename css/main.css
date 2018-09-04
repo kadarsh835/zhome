@@ -1861,6 +1861,9 @@ footer .back-to-top a i {
 	}
 }
 
+.Acassette{
+	margin-right: auto;padding-top:8%;margin-left: auto;padding-left: 15px;padding-right: 15px;text-align:center;
+}
 
 .logo{
 	font-family: 'Press Start 2P', cursive !important;
@@ -1877,5 +1880,16 @@ footer .back-to-top a i {
 		text-align: left;
 		margin-top: 19%;
 		font-size: 30px;
+	}
+	.Acassette{
+      padding-top: 15%;
+    transform: scale(1);
+    margin-right: 0;
+    padding-top: 15%;
+    margin-left: -20%;
+    padding-left: 0%;
+    padding-right: 15px;
+    transform: scale(0.8);
+    text-align: center;
 	}
 }
